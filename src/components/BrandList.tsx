@@ -17,7 +17,7 @@ export default function BrandList() {
           <div className="flex items-center justify-center gap-2 mb-6">
             <Zap className="w-8 h-8 text-purple-600" />
             <h1 className="text-6xl font-black bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
-              AI Coupon Game
+              Coupon Quest
             </h1>
             <Sparkles className="w-8 h-8 text-pink-500 animate-pulse" />
           </div>
@@ -27,9 +27,9 @@ export default function BrandList() {
             transition={{ delay: 0.2 }}
             className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
           >
-            Face off against <span className="font-bold text-orange-600">Sumana Aunty</span>, a sophisticated socialite who guards her discount codes like precious secrets. 
+            Play your cards right and charm our characters to unlock real-world discount codes.
             <br />
-            <span className="text-purple-600 font-semibold">Can you prove your worth?</span>
+            <span className="text-purple-600 font-semibold">The better you play, the bigger the discount!</span>
           </motion.p>
         </motion.div>
 
@@ -119,38 +119,6 @@ export default function BrandList() {
             </motion.div>
           ))}
         </div>
-
-        {/* Enhanced Footer */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-20"
-        >
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 shadow-lg max-w-2xl mx-auto">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-              <h4 className="text-lg font-bold text-gray-800">Game Strategy Guide</h4>
-              <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse delay-100"></div>
-            </div>
-            <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-600">
-              <div className="flex items-start gap-2">
-                <span className="text-purple-600 font-bold">💎</span>
-                <div>
-                  <p className="font-semibold text-gray-800">Status Matters</p>
-                  <p>She values social connections and high-status professions</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-pink-600 font-bold">🎭</span>
-                <div>
-                  <p className="font-semibold text-gray-800">No Generic Flattery</p>
-                  <p>She'll dismiss obvious attempts to butter her up</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </div>
   );

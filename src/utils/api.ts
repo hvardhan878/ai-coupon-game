@@ -157,6 +157,7 @@ export const sendMessage = async (messages: Message[], brand: Brand): Promise<AP
 
     // Check if there's a tool call for granting discount code
     if (choice.message.tool_calls && choice.message.tool_calls.length > 0) {
+      console.log('Full tool call object received:', choice.message.tool_calls);
       const discountCall = choice.message.tool_calls.find(
         (call: any) => call.function.name === 'grant_discount_code'
       );
@@ -171,6 +172,8 @@ export const sendMessage = async (messages: Message[], brand: Brand): Promise<AP
     // Get the text content
     const rawContent = choice.message.content || 'Sorry, I had trouble understanding that.';
     content = extractContentFromXML(rawContent);
+
+    console.log('Received message content:', content);
 
     return {
       content,
