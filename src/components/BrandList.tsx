@@ -54,10 +54,10 @@ export default function BrandList() {
       </section>
 
       {/* Product Explanation */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 via-teal-50 to-gray-50 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-slate-800 via-gray-800 to-slate-900 text-white relative overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(20,184,166,0.08),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(6,182,212,0.06),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(20,184,166,0.2),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(6,182,212,0.15),transparent_50%)]"></div>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-cyan-400"></div>
         
         <div className="relative z-10 max-w-6xl mx-auto px-6">
@@ -78,7 +78,7 @@ export default function BrandList() {
                     duration: 0.4,
                     ease: "easeInOut"
                   }}
-                  className="text-4xl md:text-5xl font-black bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent text-center pb-2"
+                  className="text-4xl md:text-5xl font-black bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent text-center pb-2"
                   style={{ lineHeight: '1.2' }}
                 >
                   {texts[currentText]}
@@ -97,7 +97,7 @@ export default function BrandList() {
               className="relative"
             >
               {/* Chat Interface Mockup */}
-              <div className="bg-white rounded-2xl shadow-2xl p-6 text-gray-900 relative border border-teal-100">
+              <div className="bg-white rounded-2xl shadow-2xl p-6 text-gray-900 relative">
                 <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-pink-400 flex items-center justify-center text-2xl">
                     🏪
@@ -136,52 +136,46 @@ export default function BrandList() {
               className="space-y-8"
             >
               <div className="space-y-6">
-                <div className="bg-white rounded-xl p-6 border border-teal-100 shadow-md hover:shadow-lg transition-shadow duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="bg-gradient-to-br from-teal-500 to-cyan-500 rounded-full p-3 mt-1 shadow-md">
-                      <span className="text-2xl">🎭</span>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold mb-2 text-gray-900">Meet Your AI Sales Agent</h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        Each persona is tailored to your brand—like Sumana Aunty for The Urban India's traditional wear. These carefully crafted characters have personality, preferences, and quirks. They don't just hand out discounts—they make customers <em>earn</em> them through engaging conversation.
-                      </p>
-                    </div>
+                <div className="flex items-start gap-4">
+                  <div className="bg-teal-500 rounded-full p-3 mt-1">
+                    <span className="text-2xl">🎭</span>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-2 text-white">Meet Your AI Sales Agent</h3>
+                    <p className="text-gray-300 leading-relaxed">
+                      Each persona is tailored to your brand—like Sumana Aunty for The Urban India's traditional wear. These carefully crafted characters have personality, preferences, and quirks. They don't just hand out discounts—they make customers <em>earn</em> them through engaging conversation.
+                    </p>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl p-6 border border-teal-100 shadow-md hover:shadow-lg transition-shadow duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-3 mt-1 shadow-md">
-                      <span className="text-2xl">💪</span>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold mb-2 text-gray-900">The Challenge is the Hook</h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        Customers love a good challenge. Can they prove they're worthy of that 25% off? Can they charm the persona into revealing a better discount? The harder the conversation, the more satisfying the win.
-                      </p>
-                    </div>
+                <div className="flex items-start gap-4">
+                  <div className="bg-purple-500 rounded-full p-3 mt-1">
+                    <span className="text-2xl">💪</span>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-2 text-white">The Challenge is the Hook</h3>
+                    <p className="text-gray-300 leading-relaxed">
+                      Customers love a good challenge. Can they prove they're worthy of that 25% off? Can they charm the persona into revealing a better discount? The harder the conversation, the more satisfying the win.
+                    </p>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl p-6 border border-teal-100 shadow-md hover:shadow-lg transition-shadow duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="bg-gradient-to-br from-pink-500 to-orange-500 rounded-full p-3 mt-1 shadow-md">
-                      <span className="text-2xl">📱</span>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold mb-2 text-gray-900">Built for Sharing</h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        Every hilarious exchange, every clever comeback, every hard-won discount becomes social media gold. Your customers become your marketing team.
-                      </p>
-                    </div>
+                <div className="flex items-start gap-4">
+                  <div className="bg-pink-500 rounded-full p-3 mt-1">
+                    <span className="text-2xl">📱</span>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-2 text-white">Built for Sharing</h3>
+                    <p className="text-gray-300 leading-relaxed">
+                      Every hilarious exchange, every clever comeback, every hard-won discount becomes social media gold. Your customers become your marketing team.
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-6 border-l-4 border-teal-500 shadow-lg">
-                <h4 className="text-xl font-bold mb-3 text-teal-700">The Psychology Behind It</h4>
-                <p className="text-gray-600 leading-relaxed">
+              <div className="bg-gradient-to-r from-teal-600/20 to-cyan-600/20 rounded-xl p-6 border border-teal-400/30">
+                <h4 className="text-xl font-bold mb-3 text-teal-300">The Psychology Behind It</h4>
+                <p className="text-gray-300 leading-relaxed">
                   When customers work for their discount, they value it more. When they share their victory, they create authentic social proof. When they laugh, they remember your brand.
                 </p>
               </div>
@@ -201,7 +195,7 @@ export default function BrandList() {
                 Experience the Magic Yourself ✨
               </button>
             </Link>
-            <p className="text-gray-600 mt-4 text-lg">
+            <p className="text-gray-400 mt-4 text-lg">
               See if you can convince Sumana Aunty to give you a discount
             </p>
           </motion.div>
