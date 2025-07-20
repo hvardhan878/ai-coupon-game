@@ -148,7 +148,7 @@ export default function BrandList() {
                   <div className="bg-gray-100 rounded-xl p-4 max-w-sm">
                     <p className="text-sm">"Hmm... interesting. But can you tell me the difference between Chanderi and Banarasi? 🧐"</p>
                   </div>
-                  <Link to="/chat/urban-india">
+                  <Link to="/chat/urban-india" className="block mt-8">
                     <div className="bg-gradient-to-r from-teal-500 to-purple-500 text-white rounded-xl p-4 text-center animate-pulse cursor-pointer hover:from-teal-600 hover:to-purple-600 transition-all duration-300">
                       <p className="text-sm font-bold">💫 Conversation continues...</p>
                     </div>
