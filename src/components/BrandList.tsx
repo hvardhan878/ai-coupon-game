@@ -1,125 +1,308 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Sparkles, Star, Zap } from 'lucide-react';
-import { brands } from '../data/brands';
-import { Card } from './ui/card';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Zap, Users, Share2, Shield } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+const texts = [
+  "Every Discount Becomes an Adventure",
+  "Every Conversation Becomes Content"
+];
 
 export default function BrandList() {
+  const [currentText, setCurrentText] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentText((prev) => (prev + 1) % texts.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
   return (
-    <div className="min-h-screen p-6 bg-gradient-to-br from-slate-50 via-white to-purple-50">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <Zap className="w-8 h-8 text-purple-600" />
-            <h1 className="text-6xl font-black bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
-              Coupon Quest
-            </h1>
-            <Sparkles className="w-8 h-8 text-pink-500 animate-pulse" />
-          </div>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-50 via-white to-teal-100 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(20,184,166,0.1),transparent_70%)]"></div>
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-5xl md:text-7xl font-black text-gray-900 mb-6 leading-tight"
           >
-            Play your cards right and charm our characters to unlock real-world discount codes.
-            <br />
-            <span className="text-purple-600 font-semibold">The better you play, the bigger the discount!</span>
+            Make Discounts a <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">Viral Moment</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto"
+          >
+            Turn your next promo into a share-worthy AI chat that customers can't resist.
           </motion.p>
-        </motion.div>
-
-        {/* Enhanced Brand Card */}
-        <div className="flex justify-center">
-          {brands.map((brand, index) => (
-            <motion.div
-              key={brand.id}
-              initial={{ opacity: 0, y: 40, rotateX: 15 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ 
-                delay: index * 0.2,
-                duration: 0.8,
-                type: "spring",
-                stiffness: 100
-              }}
-              className="group perspective-1000"
-            >
-              <Link to={`/chat/${brand.id}`}>
-                <Card 
-                  variant="neubrutalism"
-                  className="max-w-md w-full transform transition-all duration-300 hover:scale-105 hover:rotate-1 cursor-pointer bg-white hover:shadow-[8px_8px_0px_0px_rgba(0,0,0)] active:scale-95 active:shadow-[2px_2px_0px_0px_rgba(0,0,0)]"
-                >
-                  {/* Background Pattern */}
-                  <div className="absolute inset-0 opacity-5">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500"></div>
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]"></div>
-                  </div>
-                  
-                  {/* Floating Elements */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <div className="flex gap-1">
-                      <Star className="w-4 h-4 text-yellow-500 animate-pulse" />
-                      <Star className="w-3 h-3 text-yellow-400 animate-pulse delay-100" />
-                      <Star className="w-2 h-2 text-yellow-300 animate-pulse delay-200" />
-                    </div>
-                  </div>
-
-                  <div className="relative z-10 text-center p-8">
-                    {/* Emoji Avatar */}
-                    <motion.div 
-                      className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${brand.bgColor} flex items-center justify-center text-4xl mb-6 mx-auto relative overflow-hidden group-hover:animate-bounce-soft shadow-xl`}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent"></div>
-                      <span className="relative z-10 filter drop-shadow-lg">{brand.emoji}</span>
-                    </motion.div>
-                    
-                    {/* Content */}
-                    <div className="space-y-4">
-                      <div>
-                        <h3 className="text-3xl font-black text-gray-900 mb-2 group-hover:text-purple-700 transition-colors tracking-tight">
-                          {brand.name}
-                        </h3>
-                        <p className={`text-xl font-bold mb-4 ${brand.accentColor} tracking-wide`}>
-                          with {brand.personaName}
-                        </p>
-                      </div>
-                      
-                      <div className="bg-gray-50 rounded-xl p-4 border-l-4 border-purple-500">
-                        <p className="text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors text-sm">
-                          {brand.description}
-                        </p>
-                      </div>
-                      
-                      {/* CTA Button */}
-                      <motion.div 
-                        className="mt-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl py-3 px-6 font-bold text-lg group-hover:from-purple-700 group-hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <div className="flex items-center justify-center gap-2">
-                          <span>Accept the Challenge</span>
-                          <motion.div
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ repeat: Infinity, duration: 1.5 }}
-                          >
-                            ⚡
-                          </motion.div>
-                        </div>
-                      </motion.div>
-                    </div>
-                  </div>
-                </Card>
-              </Link>
-            </motion.div>
-          ))}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="space-y-4"
+          >
+            <Link to="/chat/urban-india">
+              <button className="bg-teal-600 hover:bg-teal-700 text-white text-xl font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center gap-2 mx-auto">
+                👉 Try It Now – No Signup Required
+              </button>
+            </Link>
+          </motion.div>
         </div>
-      </div>
+      </section>
+
+      {/* Product Explanation */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 via-teal-50 to-gray-50 relative overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(20,184,166,0.08),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(6,182,212,0.06),transparent_50%)]"></div>
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-cyan-400"></div>
+        
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="h-24 flex items-center justify-center overflow-visible">
+              <AnimatePresence mode="wait">
+                <motion.h2
+                  key={currentText}
+                  initial={{ opacity: 0, rotateX: -90 }}
+                  animate={{ opacity: 1, rotateX: 0 }}
+                  exit={{ opacity: 0, rotateX: 90 }}
+                  transition={{ 
+                    duration: 0.4,
+                    ease: "easeInOut"
+                  }}
+                  className="text-4xl md:text-5xl font-black bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent text-center pb-2"
+                  style={{ lineHeight: '1.2' }}
+                >
+                  {texts[currentText]}
+                </motion.h2>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Side - Product Demo */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="relative"
+            >
+              {/* Chat Interface Mockup */}
+              <div className="bg-white rounded-2xl shadow-2xl p-6 text-gray-900 relative border border-teal-100">
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-pink-400 flex items-center justify-center text-2xl">
+                    🏪
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg">Sumana Aunty</h3>
+                    <p className="text-sm text-gray-500">The Urban India</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="bg-gray-100 rounded-xl p-4 max-w-sm">
+                    <p className="text-sm">"Areh beta, you want discount? First tell me, do you even know what quality fabric looks like? 🤨"</p>
+                  </div>
+                  <div className="bg-teal-500 text-white rounded-xl p-4 max-w-sm ml-auto">
+                    <p className="text-sm">"Aunty, I've been wearing kurtas since I was 5! My grandmother taught me to feel the thread count..."</p>
+                  </div>
+                  <div className="bg-gray-100 rounded-xl p-4 max-w-sm">
+                    <p className="text-sm">"Hmm... interesting. But can you tell me the difference between Chanderi and Banarasi? 🧐"</p>
+                  </div>
+                  <Link to="/chat/urban-india">
+                    <div className="bg-gradient-to-r from-teal-500 to-purple-500 text-white rounded-xl p-4 text-center animate-pulse cursor-pointer hover:from-teal-600 hover:to-purple-600 transition-all duration-300">
+                      <p className="text-sm font-bold">💫 Conversation continues...</p>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side - Explanation */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="space-y-8"
+            >
+              <div className="space-y-6">
+                <div className="bg-white rounded-xl p-6 border border-teal-100 shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-gradient-to-br from-teal-500 to-cyan-500 rounded-full p-3 mt-1 shadow-md">
+                      <span className="text-2xl">🎭</span>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-2 text-gray-900">Meet Your AI Sales Agent</h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Each persona is tailored to your brand—like Sumana Aunty for The Urban India's traditional wear. These carefully crafted characters have personality, preferences, and quirks. They don't just hand out discounts—they make customers <em>earn</em> them through engaging conversation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-xl p-6 border border-teal-100 shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-3 mt-1 shadow-md">
+                      <span className="text-2xl">💪</span>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-2 text-gray-900">The Challenge is the Hook</h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Customers love a good challenge. Can they prove they're worthy of that 25% off? Can they charm the persona into revealing a better discount? The harder the conversation, the more satisfying the win.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-xl p-6 border border-teal-100 shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-gradient-to-br from-pink-500 to-orange-500 rounded-full p-3 mt-1 shadow-md">
+                      <span className="text-2xl">📱</span>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-2 text-gray-900">Built for Sharing</h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Every hilarious exchange, every clever comeback, every hard-won discount becomes social media gold. Your customers become your marketing team.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 border-l-4 border-teal-500 shadow-lg">
+                <h4 className="text-xl font-bold mb-3 text-teal-700">The Psychology Behind It</h4>
+                <p className="text-gray-600 leading-relaxed">
+                  When customers work for their discount, they value it more. When they share their victory, they create authentic social proof. When they laugh, they remember your brand.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="text-center mt-16"
+          >
+            <Link to="/chat/urban-india">
+              <button className="bg-gradient-to-r from-teal-500 to-purple-500 hover:from-teal-600 hover:to-purple-600 text-white text-xl font-bold py-4 px-12 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl transform">
+                Experience the Magic Yourself ✨
+              </button>
+            </Link>
+            <p className="text-gray-600 mt-4 text-lg">
+              See if you can convince Sumana Aunty to give you a discount
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why It Works */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-teal-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">Why It Works</h2>
+          </motion.div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: <Share2 className="w-8 h-8" />,
+                title: "Viral by Design",
+                description: "People love to outsmart \"characters.\" This creates shareable moments on TikTok, Instagram Stories, and Twitter."
+              },
+              {
+                icon: <Users className="w-8 h-8" />,
+                title: "Self-Selecting Discounts", 
+                description: "Only those who value your discount will play the game—natural price discrimination with no extra work."
+              },
+              {
+                icon: <Zap className="w-8 h-8" />,
+                title: "Beyond Traditional Gamification",
+                description: "We create memorable conversations customers want to share, not spin-the-wheel popups that interrupt."
+              },
+              {
+                icon: <Shield className="w-8 h-8" />,
+                title: "Brand Control",
+                description: "You set minimum and maximum discount tiers. Keep margins safe while fueling engagement."
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="text-center p-6 bg-white rounded-xl border border-gray-100 shadow-md hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="text-teal-600 mb-4 flex justify-center bg-gradient-to-br from-teal-50 to-cyan-50 w-16 h-16 rounded-full items-center mx-auto border border-teal-200">{item.icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+      {/* Bottom CTA */}
+      <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-600 text-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-black mb-4">👉 Try It Now – Instant AI Persona</h2>
+            <p className="text-xl text-teal-100 italic mb-8 max-w-2xl mx-auto">
+              "Imagine convincing a strict 'Indian Aunty' to drop 25% off your kurta… priceless!"
+            </p>
+            <div className="flex flex-col md:flex-row gap-6 justify-center">
+              <Link to="/chat/urban-india">
+                <button className="bg-white text-teal-600 text-xl font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                  Get Started
+                </button>
+              </Link>
+              <button className="bg-teal-800 hover:bg-teal-900 text-white text-xl font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl border-2 border-teal-400">
+                Join Waitlist
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 bg-gray-900 text-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <p className="text-gray-400">© 2025 ViralDiscount.ai</p>
+            </div>
+            <div className="flex gap-6">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 } 
