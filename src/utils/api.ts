@@ -182,7 +182,7 @@ export const sendMessage = async (messages: Message[], brand: Brand): Promise<AP
     
     // Fallback response for demo purposes
     return {
-      content: "Who is this? I don't have time for random messages.",
+      content: "I don't have time for random messages.",
       gameWon: false
     };
   }

@@ -26,14 +26,8 @@ export default function ChatGame() {
   
   useEffect(() => {
     if (brand) {
-      // Initial greeting message - Sumana Aunty is suspicious of unknown numbers
-      const initialMessage: Message = {
-        id: '1',
-        content: 'Who is this?',
-        isUser: false,
-        timestamp: new Date()
-      };
-      setChatState(prev => ({ ...prev, messages: [initialMessage] }));
+      // Start with empty messages - user must initiate conversation
+      setChatState(prev => ({ ...prev, messages: [] }));
     }
   }, [brand]);
 
