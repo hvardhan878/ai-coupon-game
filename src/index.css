@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  .card-hover {
+    @apply transform transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+  
+  .chat-bubble {
+    @apply max-w-xs lg:max-w-md px-4 py-2 rounded-2xl shadow-sm;
+  }
+  
+  .typing-animation {
+    @apply inline-block w-2 h-2 bg-gray-400 rounded-full mr-1 animate-pulse;
+  }
+} 
