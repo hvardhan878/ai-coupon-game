@@ -16,7 +16,8 @@ export default function ChatGame() {
     messages: [],
     isLoading: false,
     gameWon: false,
-    couponCode: undefined
+    couponCode: undefined,
+    bonusAmount: undefined
   });
   
   const [input, setInput] = useState('');
@@ -69,7 +70,8 @@ export default function ChatGame() {
         messages: [...prev.messages, aiMessage],
         isLoading: false,
         gameWon: response.gameWon,
-        couponCode: response.couponCode
+        couponCode: response.couponCode,
+        bonusAmount: response.bonusAmount
       }));
     } catch (error) {
       console.error('Error sending message:', error);
@@ -174,19 +176,19 @@ export default function ChatGame() {
               </div>
               
               <div className="space-y-3 text-sm text-gray-600">
-                <p className="font-medium text-gray-800">📱 You're DMing her from an unknown number!</p>
-                <p className="font-medium text-gray-800">💡 Your goal: Convince her to give you a discount!</p>
+                <p className="font-medium text-gray-800">🎰 You're chatting with Rico on Jackpot.bet!</p>
+                <p className="font-medium text-gray-800">💡 Your goal: Prove your degen spirit to earn a casino bonus!</p>
                 <div className="space-y-2">
                   <p><strong>Tips:</strong></p>
                   <ul className="list-disc list-inside space-y-1 text-xs">
-                    <li>Be charming and respectful</li>
-                    <li>Introduce yourself first</li>
-                    <li>Find common ground</li>
-                    <li>Be genuine, not pushy</li>
+                    <li>Show your gambling passion</li>
+                    <li>Share bad beat stories</li>
+                    <li>Prove you're not a tourist</li>
+                    <li>Never admit to cashing out early</li>
                   </ul>
                 </div>
                 <div className="bg-purple-50 p-3 rounded-lg">
-                  <p className="text-xs font-medium text-purple-800">💬 Try: "Hi! I'm a big fan of your brand. Any chance for a discount?"</p>
+                  <p className="text-xs font-medium text-purple-800">💬 Try: "Yo Rico! Been grinding Degen Mining all night, just hit my biggest win!"</p>
                 </div>
               </div>
             </motion.div>
@@ -274,7 +276,13 @@ export default function ChatGame() {
               transition={{ delay: 0.6, type: "spring" }}
               className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 inline-block border border-white/20"
             >
-              <p className="text-sm opacity-90 mb-3 font-medium">Your exclusive coupon code:</p>
+              <p className="text-sm opacity-90 mb-3 font-medium">Your exclusive bonus:</p>
+              {chatState.bonusAmount && (
+                <p className="text-lg font-bold mb-4 text-yellow-300">
+                  {chatState.bonusAmount}
+                </p>
+              )}
+              <p className="text-sm opacity-90 mb-3 font-medium">Coupon code:</p>
               <div className="flex items-center space-x-4">
                 <code className="text-3xl font-mono font-black tracking-wider bg-black/20 px-4 py-2 rounded-lg">
                   {chatState.couponCode}

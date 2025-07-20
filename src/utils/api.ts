@@ -7,6 +7,7 @@ interface APIResponse {
   content: string;
   gameWon: boolean;
   couponCode?: string;
+  bonusAmount?: string;
 }
 
 // Tool definition for granting casino bonuses
@@ -153,6 +154,7 @@ export const sendMessage = async (messages: Message[]): Promise<APIResponse> => 
     
     let gameWon = false;
     let couponCode: string | undefined;
+    let bonusAmount: string | undefined;
     let content = '';
 
     // Check if there's a tool call for granting a bonus
@@ -166,6 +168,7 @@ export const sendMessage = async (messages: Message[]): Promise<APIResponse> => 
         gameWon = true;
         const args = JSON.parse(bonusCall.function.arguments);
         couponCode = args.code_type; // Re-use existing UI field to surface the bonus code type
+        bonusAmount = args.amount;
       }
     }
 
@@ -178,7 +181,8 @@ export const sendMessage = async (messages: Message[]): Promise<APIResponse> => 
     return {
       content,
       gameWon,
-      couponCode
+      couponCode,
+      bonusAmount
     };
   } catch (error) {
     console.error('Error calling OpenRouter API:', error);

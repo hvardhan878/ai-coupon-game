@@ -13,8 +13,8 @@ A fun, interactive game where users try to convince AI personas to give them cou
 
 ## 🎭 Available Personas
 
-1. **Sumana Aunty** (The Urban India) 🏪 - A caring but shrewd neighborhood aunty
-2. **Rajesh Uncle** (Tech Bazaar) 💻 - A tech-enthusiastic gadget guru
+1. **Rico** (Jackpot.bet) 🎰 - A legendary degen gambler on a massive heater who tests your gambling spirit
+2. **Rajesh Uncle** (Tech Bazaar) 💻 - A tech-enthusiastic gadget guru (Coming Soon)
 3. **Priya Didi** (Fashion Street) 👗 - A fashion-forward style expert (Coming Soon)
 4. **Chef Gupta** (Food Paradise) 🍽️ - A passionate food connoisseur (Coming Soon)
 
@@ -57,8 +57,8 @@ The game will be available at `http://localhost:3000`
 
 ## 🎯 Tips for Success
 
-- **Sumana Aunty**: Be respectful, share personal stories, use terms of endearment
-- **Rajesh Uncle**: Show genuine interest in technology, ask thoughtful questions
+- **Rico**: Show your degen spirit, share bad beat stories, prove you're not a tourist
+- **Rajesh Uncle**: Show genuine interest in technology, ask thoughtful questions (Coming Soon)
 - **Be Creative**: Try different approaches - humor, sincerity, expertise, etc.
 - **Stay in Character**: The AIs respond better to contextually appropriate conversation
 - **Don't Give Up**: Each conversation is unique and dynamic!

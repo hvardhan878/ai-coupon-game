@@ -41,9 +41,9 @@ export default function BrandList() {
               ViralDiscount.ai
             </h1>
           </div>
-          <Link to="/chat/urban-india">
-            <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 hover:scale-105">
-              Try Demo
+          <Link to="/chat/jackpot-bet">
+            <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 hover:scale-105">
+              Test Your Spirit 🔥
             </button>
           </Link>
         </div>
@@ -74,7 +74,7 @@ export default function BrandList() {
             transition={{ delay: 0.4 }}
             className="space-y-4"
           >
-            <Link to="/chat/urban-india">
+            <Link to="/chat/jackpot-bet">
               <button className="bg-teal-600 hover:bg-teal-700 text-white text-xl font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center gap-2 mx-auto">
                 👉 Try It Now – No Signup Required
               </button>
@@ -129,26 +129,26 @@ export default function BrandList() {
               {/* Chat Interface Mockup */}
               <div className="bg-white rounded-2xl shadow-2xl p-6 text-gray-900 relative">
                 <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-pink-400 flex items-center justify-center text-2xl">
-                    🏪
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-2xl">
+                    🎰
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg">Sumana Aunty</h3>
-                    <p className="text-sm text-gray-500">The Urban India</p>
+                    <h3 className="font-bold text-lg">Rico</h3>
+                    <p className="text-sm text-gray-500">Jackpot.bet</p>
                   </div>
                 </div>
                 
                 <div className="space-y-4">
                   <div className="bg-gray-100 rounded-xl p-4 max-w-sm">
-                    <p className="text-sm">"Areh beta, you want discount? First tell me, do you even know what quality fabric looks like? 🤨"</p>
+                    <p className="text-sm">"who's this. talk fast i'm on a heater 🔥"</p>
                   </div>
                   <div className="bg-teal-500 text-white rounded-xl p-4 max-w-sm ml-auto">
-                    <p className="text-sm">"Aunty, I've been wearing kurtas since I was 5! My grandmother taught me to feel the thread count..."</p>
+                    <p className="text-sm">"Yo Rico! I've been grinding Degen Mining all night, hit 15 diamonds before I cashed out..."</p>
                   </div>
                   <div className="bg-gray-100 rounded-xl p-4 max-w-sm">
-                    <p className="text-sm">"Hmm... interesting. But can you tell me the difference between Chanderi and Banarasi? 🧐"</p>
+                    <p className="text-sm">"You CASHED OUT? At 15? The diamonds were probably one click away and you folded. WEAK. 💯"</p>
                   </div>
-                  <Link to="/chat/urban-india" className="block mt-8">
+                  <Link to="/chat/jackpot-bet" className="block mt-8">
                     <div className="bg-gradient-to-r from-teal-500 to-purple-500 text-white rounded-xl p-4 text-center animate-pulse cursor-pointer hover:from-teal-600 hover:to-purple-600 transition-all duration-300">
                       <p className="text-sm font-bold">💫 Conversation continues...</p>
                     </div>
@@ -173,7 +173,7 @@ export default function BrandList() {
                   <div>
                     <h3 className="text-2xl font-bold mb-2 text-white">Meet Your AI Sales Agent</h3>
                     <p className="text-gray-300 leading-relaxed">
-                      Each persona is tailored to your brand—like Sumana Aunty for The Urban India's traditional wear. These carefully crafted characters have personality, preferences, and quirks. They don't just hand out discounts—they make customers <em>earn</em> them through engaging conversation.
+                      Each persona is tailored to your brand—like Rico for Jackpot.bet's casino gaming. These carefully crafted characters have personality, preferences, and quirks. They don't just hand out bonuses—they make players <em>earn</em> them by proving their true degen spirit.
                     </p>
                   </div>
                 </div>
@@ -185,7 +185,7 @@ export default function BrandList() {
                   <div>
                     <h3 className="text-2xl font-bold mb-2 text-white">The Challenge is the Hook</h3>
                     <p className="text-gray-300 leading-relaxed">
-                      Customers love a good challenge. Can they prove they're worthy of that 25% off? Can they charm the persona into revealing a better discount? The harder the conversation, the more satisfying the win.
+                      Players love a good challenge. Can they prove they're a true degen worthy of that bonus? Can they convince Rico they're not just another tourist? The harder the test, the more satisfying the heater.
                     </p>
                   </div>
                 </div>
@@ -220,13 +220,13 @@ export default function BrandList() {
             transition={{ delay: 0.6 }}
             className="text-center mt-16"
           >
-            <Link to="/chat/urban-india">
-              <button className="bg-gradient-to-r from-teal-500 to-purple-500 hover:from-teal-600 hover:to-purple-600 text-white text-xl font-bold py-4 px-12 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl transform">
-                Experience the Magic Yourself ✨
+            <Link to="/chat/jackpot-bet">
+              <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white text-xl font-bold py-4 px-12 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl transform">
+                Test Your Degen Spirit 🔥
               </button>
             </Link>
             <p className="text-gray-400 mt-4 text-lg">
-              See if you can convince Sumana Aunty to give you a discount
+              See if you can convince Rico to grant you a casino bonus
             </p>
           </motion.div>
         </div>
@@ -297,10 +297,10 @@ export default function BrandList() {
           >
             <h2 className="text-3xl md:text-4xl font-black mb-4">👉 Try It Now – Instant AI Persona</h2>
             <p className="text-xl text-teal-100 italic mb-8 max-w-2xl mx-auto">
-              "Imagine convincing a strict 'Indian Aunty' to drop 25% off your kurta… priceless!"
+              "Imagine proving your degen spirit to Rico and earning that exclusive casino bonus… priceless!"
             </p>
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-              <Link to="/chat/urban-india">
+              <Link to="/chat/jackpot-bet">
                 <button className="bg-white text-teal-600 text-xl font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
                   Get Started
                 </button>

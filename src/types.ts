@@ -21,4 +21,5 @@ export interface ChatState {
   isLoading: boolean;
   gameWon: boolean;
   couponCode?: string;
+  bonusAmount?: string;
 } 

@@ -2,12 +2,12 @@ import { Brand } from '../types';
 
 export const brands: Brand[] = [
   {
-    id: 'urban-india',
-    name: 'The Urban India',
-    personaName: 'Sumana Aunty',
-    description: 'A sophisticated socialite who guards her discount codes carefully. Can you prove your worth?',
-    bgColor: 'from-orange-400 to-pink-400',
-    accentColor: 'text-orange-600',
-    emoji: '🏪'
+    id: 'jackpot-bet',
+    name: 'Jackpot.bet',
+    personaName: 'Rico',
+    description: 'A legendary degen gambler on a massive heater. Can you prove your true degen spirit?',
+    bgColor: 'from-green-400 to-emerald-600',
+    accentColor: 'text-green-600',
+    emoji: '🎰'
   }
 ]; 
