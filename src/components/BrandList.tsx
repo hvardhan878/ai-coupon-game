@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, Users, Share2, Shield } from 'lucide-react';
+import { Zap, Users, Share2, Shield, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const texts = [
@@ -10,6 +10,7 @@ const texts = [
 
 export default function BrandList() {
   const [currentText, setCurrentText] = useState(0);
+  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -17,6 +18,16 @@ export default function BrandList() {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  // Re-initialize GetWaitlist widget when modal opens
+  useEffect(() => {
+    if (showWaitlistModal && window.GetWaitlist) {
+      setTimeout(() => {
+        window.GetWaitlist.init();
+      }, 100);
+    }
+  }, [showWaitlistModal]);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -294,9 +305,12 @@ export default function BrandList() {
                   Get Started
                 </button>
               </Link>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
-                <div id="getWaitlistContainer" data-waitlist_id="30421" data-widget_type="WIDGET_2"></div>
-              </div>
+              <button 
+                onClick={() => setShowWaitlistModal(true)}
+                className="bg-teal-800 hover:bg-teal-900 text-white text-xl font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl border-2 border-teal-400"
+              >
+                Join Waitlist
+              </button>
             </div>
           </motion.div>
         </div>
@@ -316,6 +330,46 @@ export default function BrandList() {
           </div>
         </div>
       </footer>
+
+      {/* Waitlist Modal */}
+      <AnimatePresence>
+        {showWaitlistModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowWaitlistModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowWaitlistModal(false)}
+                className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
+              
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white font-bold text-2xl">🚀</span>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">Join the Waitlist</h3>
+                <p className="text-gray-600">Be the first to know when we launch new AI personas and features!</p>
+              </div>
+
+              <div className="space-y-4">
+                <div id="getWaitlistContainer" data-waitlist_id="30421" data-widget_type="WIDGET_2"></div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 } 
