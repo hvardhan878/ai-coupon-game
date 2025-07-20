@@ -90,6 +90,7 @@ const extractContentFromXML = (content: string): string => {
 
 export const sendMessage = async (messages: Message[], brand: Brand): Promise<APIResponse> => {
   try {
+    console.log('API Key check:', OPENROUTER_API_KEY.substring(0, 10) + '...');
     // Convert messages to OpenRouter format
     const formattedMessages = [
       {
@@ -110,7 +111,7 @@ export const sendMessage = async (messages: Message[], brand: Brand): Promise<AP
         'X-Title': 'AI Coupon Game'
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.5-flash-lite-preview-06-17',
+        model: 'google/gemini-2.5-flash',
         messages: formattedMessages,
         max_tokens: 500,
         temperature: 0.8,
