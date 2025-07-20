@@ -22,6 +22,7 @@ export default function ChatGame() {
   const [input, setInput] = useState('');
   const [copiedCode, setCopiedCode] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   
   useEffect(() => {
     if (brand) {
@@ -79,6 +80,11 @@ export default function ChatGame() {
       console.error('Error sending message:', error);
       setChatState(prev => ({ ...prev, isLoading: false }));
     }
+
+    // Focus the input after message is sent
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 100);
   };
 
   const copyToClipboard = async () => {
@@ -253,10 +259,11 @@ export default function ChatGame() {
             <div className="flex space-x-4 items-end">
               <div className="flex-1 relative">
                 <input
+                  ref={inputRef}
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                   placeholder={`What would you like to say to ${brand.personaName}?`}
                   className={cn(
                     "w-full px-6 py-4 bg-white border-2 border-gray-200 rounded-2xl",

@@ -99,4 +99,19 @@ temp/
 .vite/
 
 # TypeScript
-*.tsbuildinfo 
+*.tsbuildinfo
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
