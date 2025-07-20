@@ -54,7 +54,7 @@ export default function ChatGame() {
     setInput('');
 
     try {
-      const response = await sendMessage([...chatState.messages, userMessage], brand);
+      const response = await sendMessage([...chatState.messages, userMessage]);
       
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),

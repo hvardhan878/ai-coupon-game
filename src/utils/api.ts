@@ -1,4 +1,4 @@
-import { Message, Brand } from '../types';
+import { Message } from '../types';
 
 // You'll need to set your OpenRouter API key as an environment variable
 const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY || 'your-openrouter-api-key';
@@ -111,7 +111,7 @@ const extractContentFromXML = (content: string): string => {
   return content.replace(/<[^>]*>/g, '').trim();
 };
 
-export const sendMessage = async (messages: Message[], brand: Brand): Promise<APIResponse> => {
+export const sendMessage = async (messages: Message[]): Promise<APIResponse> => {
   try {
     console.log('API Key check:', OPENROUTER_API_KEY.substring(0, 10) + '...');
     // Convert messages to OpenRouter format

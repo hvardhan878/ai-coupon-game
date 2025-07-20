@@ -76,14 +76,12 @@ export function ChatBubbleMessage({
 }
 
 interface ChatBubbleAvatarProps {
-  src?: string
   fallback?: string
   className?: string
   emoji?: string
 }
 
 export function ChatBubbleAvatar({
-  src,
   fallback = "AI",
   emoji,
   className,
