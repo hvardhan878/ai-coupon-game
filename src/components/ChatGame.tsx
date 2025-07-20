@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, ArrowLeft, Trophy, Copy, CheckCircle, Sparkles } from 'lucide-react';
+import { Send, ArrowLeft, Trophy, Copy, CheckCircle, Sparkles, X } from 'lucide-react';
 import { brands } from '../data/brands';
 import { Message, ChatState } from '../types';
 import { sendMessage } from '../utils/api';
@@ -21,6 +21,7 @@ export default function ChatGame() {
   
   const [input, setInput] = useState('');
   const [copiedCode, setCopiedCode] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   
@@ -142,6 +143,55 @@ export default function ChatGame() {
           )}
         </div>
       </div>
+
+      {/* Tips Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-white rounded-2xl p-6 max-w-md w-full mx-4 relative shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowModal(false)}
+                className="absolute top-4 right-4 p-1 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
+              
+              <div className="text-center mb-4">
+                <div className="text-4xl mb-2">{brand?.emoji}</div>
+                <h3 className="text-xl font-bold text-gray-800">Chat with {brand?.personaName}</h3>
+              </div>
+              
+              <div className="space-y-3 text-sm text-gray-600">
+                <p className="font-medium text-gray-800">💡 Your goal: Convince her to give you a discount!</p>
+                <div className="space-y-2">
+                  <p><strong>Tips:</strong></p>
+                  <ul className="list-disc list-inside space-y-1 text-xs">
+                    <li>Be charming and respectful</li>
+                    <li>Ask about her interests</li>
+                    <li>Find common ground</li>
+                    <li>Be genuine, not pushy</li>
+                  </ul>
+                </div>
+                <div className="bg-purple-50 p-3 rounded-lg">
+                  <p className="text-xs font-medium text-purple-800">💬 Try: "Hi! Love your brand. Any chance for a student discount?"</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Enhanced Chat Messages */}
       <div className="flex-1 overflow-y-auto p-6">
