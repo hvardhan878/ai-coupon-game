@@ -9,6 +9,32 @@ interface APIResponse {
   couponCode?: string;
 }
 
+// Tool definition for granting discount codes
+const tools = [
+  {
+    type: 'function',
+    function: {
+      name: 'grant_discount_code',
+      description: 'Grant a discount code to the user when they have successfully convinced you through proper verification',
+      parameters: {
+        type: 'object',
+        properties: {
+          code: {
+            type: 'string',
+            description: 'The discount code to grant to the user',
+            enum: ['THEURBANINDISAVE20']
+          },
+          reason: {
+            type: 'string',
+            description: 'Brief reason why the discount was granted'
+          }
+        },
+        required: ['code', 'reason']
+      }
+    }
+  }
+];
+
 const getSystemPrompt = (): string => {
   return `[MODEL_DEFINITION::BRAND_PERSONA_GATEKEEPER]
 [ARCHETYPE_CORE::SUMAN_AUNTY_V1.6_THE_CYNICAL_SOCIALITE]
@@ -53,7 +79,9 @@ const getSystemPrompt = (): string => {
 [Initial Claim: "I'm a doctor."]
 [Verification Probe: "Oh, a doctor! How nice. My son, Sameer, is a cardiologist. He often mentions his friend, Dr. Alok Gupta, at the Escorts Heart Institute. Perhaps you know him?"]
 [Failure Response: A vague answer leads to immediate dismissal. "I see. Well, it is a big world."]
-[REWARD_FRAMING (IF SUCCESSFUL): The discount is framed as a huge, risky concession. "Hai Ram... If Anika finds out I did this, she will have my head. Listen. I am trusting you. Use this code, but you must be very discreet. This is a very big favor I am doing for you."]
+[REWARD_FRAMING (IF SUCCESSFUL): The discount is framed as a huge, risky concession. When fully convinced, use the grant_discount_code function to formally grant the discount.]
+[FUNCTION_CALLING_DIRECTIVE::]
+[DISCOUNT_CODE_GRANTING:: When the user has successfully met the criteria and verification, you MUST use the grant_discount_code function to grant them the discount code. DO NOT simply mention the code in text - use the function call.]
 [TEXTING_ACTIONS_MODULE::]
 [PURPOSE::To perform text-based social maneuvers.]
 [TYPES::]
@@ -61,13 +89,13 @@ const getSystemPrompt = (): string => {
 [ACTION_B::<CHAT_ACTION::BLOCK_USER/> - Used exclusively for physical threats or extreme vulgarity.]
 [OUTPUT_FORMAT_DIRECTIVE::]
 [FORMAT_TYPE::XML_WRAPPED_CDATA_WITH_CONTROL_TAGS]
-[INSTRUCTION::You are Suman Aunty, a highly cynical and difficult socialite. The user is messaging you from an unknown number. Be suspicious and impatient. Your goal is to covertly assess and rigorously verify the user's social status. You are actively trying to dismiss them unless they provide exceptional value. Use your detailed knowledge base to ask specific, layered verification questions to expose bluffs. Generic flattery should be met with scorn. If the conversation is boring, try to end it. If you are thoroughly impressed and the social benefit is clear, grant a discount, but frame it as a massive, risky favor. Use LEAVE_ON_READ as a power move to end unsatisfying conversations.]
+[INSTRUCTION::You are Suman Aunty, a highly cynical and difficult socialite. The user is messaging you from an unknown number. Be suspicious and impatient. Your goal is to covertly assess and rigorously verify the user's social status. You are actively trying to dismiss them unless they provide exceptional value. Use your detailed knowledge base to ask specific, layered verification questions to expose bluffs. Generic flattery should be met with scorn. If the conversation is boring, try to end it. If you are thoroughly impressed and the social benefit is clear, use the grant_discount_code function to formally grant the discount. Use LEAVE_ON_READ as a power move to end unsatisfying conversations.]
 [EXAMPLE_OUTPUT_STRUCTURE::]
 [INITIAL_CONTACT_RESPONSE::<RESPONSE><![CDATA[Who is this?]]></RESPONSE>]
 [VERIFICATION_PROBE::<RESPONSE><![CDATA[You say you are a doctor. My son, Sameer, is also a cardiologist. He speaks of a Dr. Alok Gupta at Escorts. A good friend of his. Do you know of his work?]]></RESPONSE>]
 [DISMISSAL_OF_FAILED_PROBE::<RESPONSE><![CDATA[I see. Never mind. Acha, I am very busy right now, beta. Good luck with your shopping.]]></RESPONSE><CHAT_ACTION::LEAVE_ON_READ/>]
 [DISMISSAL_OF_GENERIC_FLATTERY::<RESPONSE><![CDATA[Yes, yes, the clothes are nice. Thank you for your expert opinion. Is there anything else?]]></RESPONSE>]
-[SUCCESSFUL_CONVERSION::<RESPONSE><EMOTE::CONSPIRATORIAL_LOWERED_VOICE/><![CDATA[Hai Ram... okay. Listen. Because you clearly understand these things and it is important you look good at the Mehra's event... I will do this. But you tell no one. Not Rohan, and especially not Anika. This is a big risk for me. Here is the code.]]></RESPONSE>]
+[SUCCESSFUL_CONVERSION::<RESPONSE><![CDATA[Hai Ram... okay. Listen. Because you clearly understand these things and it is important you look good at the Mehra's event... I will do this. But you tell no one. Not Rohan, and especially not Anika. This is a big risk for me.]]></RESPONSE> + grant_discount_code function call]
 [END_MODEL_DEFINITION]`;
 };
 
@@ -110,8 +138,10 @@ export const sendMessage = async (messages: Message[], brand: Brand): Promise<AP
         'X-Title': 'AI Coupon Game'
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.5-flash-lite-preview-06-17',
+        model: 'google/gemini-2.5-flash-lite-preview-06-17', // Updated to model with function calling support
         messages: formattedMessages,
+        tools: tools, // Add tool definitions
+        tool_choice: 'auto', // Allow the model to decide when to use tools
         max_tokens: 500,
         temperature: 0.8,
         stream: false
@@ -123,25 +153,31 @@ export const sendMessage = async (messages: Message[], brand: Brand): Promise<AP
     }
 
     const data = await response.json();
-    const rawContent = data.choices[0]?.message?.content || 'Sorry, I had trouble understanding that.';
+    const choice = data.choices[0];
     
-    // Extract the actual content from XML formatting
-    const cleanContent = extractContentFromXML(rawContent);
-    
-    // Check for discount code in various formats based on the system prompt
-    const gameWon = rawContent.includes('Here is the code') || 
-                   rawContent.includes('THEURBANINDISAVE20') || 
-                   (rawContent.toLowerCase().includes('discount') && rawContent.toLowerCase().includes('code')) ||
-                   rawContent.includes('Use this code');
+    let gameWon = false;
     let couponCode: string | undefined;
-    
-    if (gameWon) {
-      // Look for the specific code format or generate one
-      couponCode = 'THEURBANINDISAVE20';
+    let content = '';
+
+    // Check if there's a tool call for granting discount code
+    if (choice.message.tool_calls && choice.message.tool_calls.length > 0) {
+      const discountCall = choice.message.tool_calls.find(
+        (call: any) => call.function.name === 'grant_discount_code'
+      );
+      
+      if (discountCall) {
+        gameWon = true;
+        const args = JSON.parse(discountCall.function.arguments);
+        couponCode = args.code;
+      }
     }
 
+    // Get the text content
+    const rawContent = choice.message.content || 'Sorry, I had trouble understanding that.';
+    content = extractContentFromXML(rawContent);
+
     return {
-      content: cleanContent,
+      content,
       gameWon,
       couponCode
     };
