@@ -288,15 +288,15 @@ export default function BrandList() {
             <p className="text-xl text-teal-100 italic mb-8 max-w-2xl mx-auto">
               "Imagine convincing a strict 'Indian Aunty' to drop 25% off your kurta… priceless!"
             </p>
-            <div className="flex flex-col md:flex-row gap-6 justify-center">
+            <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
               <Link to="/chat/urban-india">
                 <button className="bg-white text-teal-600 text-xl font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
                   Get Started
                 </button>
               </Link>
-              <button className="bg-teal-800 hover:bg-teal-900 text-white text-xl font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl border-2 border-teal-400">
-                Join Waitlist
-              </button>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+                <div id="getWaitlistContainer" data-waitlist_id="30421" data-widget_type="WIDGET_2"></div>
+              </div>
             </div>
           </motion.div>
         </div>
