@@ -174,18 +174,19 @@ export default function ChatGame() {
               </div>
               
               <div className="space-y-3 text-sm text-gray-600">
+                <p className="font-medium text-gray-800">📱 You're DMing her from an unknown number!</p>
                 <p className="font-medium text-gray-800">💡 Your goal: Convince her to give you a discount!</p>
                 <div className="space-y-2">
                   <p><strong>Tips:</strong></p>
                   <ul className="list-disc list-inside space-y-1 text-xs">
                     <li>Be charming and respectful</li>
-                    <li>Ask about her interests</li>
+                    <li>Introduce yourself first</li>
                     <li>Find common ground</li>
                     <li>Be genuine, not pushy</li>
                   </ul>
                 </div>
                 <div className="bg-purple-50 p-3 rounded-lg">
-                  <p className="text-xs font-medium text-purple-800">💬 Try: "Hi! Love your brand. Any chance for a student discount?"</p>
+                  <p className="text-xs font-medium text-purple-800">💬 Try: "Hi! I'm a big fan of your brand. Any chance for a discount?"</p>
                 </div>
               </div>
             </motion.div>
