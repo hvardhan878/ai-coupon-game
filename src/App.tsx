@@ -4,7 +4,7 @@ import ChatGame from './components/ChatGame'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen gradient-sharp">
       <Routes>
         <Route path="/" element={<BrandList />} />
         <Route path="/chat/:brandId" element={<ChatGame />} />

@@ -45,8 +45,8 @@ export function ChatBubbleMessage({
       className={cn(
         "rounded-2xl px-4 py-3 max-w-xs lg:max-w-md relative",
         variant === "sent" 
-          ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg" 
-          : "bg-white border border-gray-200 text-gray-800 shadow-sm",
+          ? "bg-gradient-to-br from-primary-600 to-primary-800 text-white shadow-lg border border-primary-700" 
+          : "bg-secondary-800 border border-primary-600 text-white shadow-lg",
         "transform transition-all duration-200 hover:scale-[1.02]",
         className
       )}
@@ -54,11 +54,11 @@ export function ChatBubbleMessage({
       {isLoading ? (
         <div className="flex items-center space-x-2">
           <div className="flex space-x-1">
-            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+            <div className="w-2 h-2 bg-secondary-400 rounded-full animate-bounce"></div>
+            <div className="w-2 h-2 bg-secondary-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+            <div className="w-2 h-2 bg-secondary-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
           </div>
-          <span className="text-sm text-gray-500">Thinking...</span>
+          <span className="text-sm text-secondary-500">Thinking...</span>
         </div>
       ) : (
         <div className="text-sm leading-relaxed">{children}</div>
@@ -68,8 +68,8 @@ export function ChatBubbleMessage({
       <div className={cn(
         "absolute top-3 w-0 h-0",
         variant === "sent" 
-          ? "right-[-6px] border-l-[6px] border-l-purple-600 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent"
-          : "left-[-6px] border-r-[6px] border-r-white border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent"
+          ? "right-[-6px] border-l-[6px] border-l-primary-700 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent"
+          : "left-[-6px] border-r-[6px] border-r-secondary-800 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent"
       )} />
     </div>
   )
@@ -89,7 +89,7 @@ export function ChatBubbleAvatar({
   return (
     <div className={cn(
       "w-10 h-10 rounded-full flex items-center justify-center text-lg font-semibold shrink-0",
-      "bg-gradient-to-br from-orange-400 to-pink-400 text-white shadow-md",
+      "bg-gradient-to-br from-primary-500 to-primary-700 text-white shadow-md",
       className
     )}>
       {emoji || fallback}

@@ -6,8 +6,8 @@ export const brands: Brand[] = [
     name: 'Jackpot.bet',
     personaName: 'Rico',
     description: 'A legendary degen gambler on a massive heater. Can you prove your true degen spirit?',
-    bgColor: 'from-green-400 to-emerald-600',
-    accentColor: 'text-green-600',
+    bgColor: 'from-primary-500 to-primary-700',
+    accentColor: 'text-primary-600',
     emoji: '🎰'
   }
 ]; 

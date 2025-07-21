@@ -18,7 +18,47 @@
 
 @layer components {
   .gradient-bg {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #000000 0%, #1e293b 100%);
+  }
+  
+  .gradient-purple {
+    background: linear-gradient(45deg, #581c87 0%, #000000 100%);
+  }
+  
+  .gradient-dark {
+    background: linear-gradient(180deg, #000000 0%, #0f172a 100%);
+  }
+  
+  .gradient-casino {
+    background: linear-gradient(45deg, #000000 0%, #581c87 100%);
+  }
+  
+  .gradient-accent {
+    background: linear-gradient(90deg, #dc2626 0%, #7f1d1d 100%);
+  }
+  
+  .gradient-gold {
+    background: linear-gradient(90deg, #92400e 0%, #451a03 100%);
+  }
+  
+  .gradient-sharp {
+    background: linear-gradient(135deg, #000000 0%, #581c87 50%, #000000 100%);
+  }
+  
+  .gradient-brutal {
+    background: linear-gradient(45deg, #000000 0%, #581c87 100%);
+  }
+  
+  .gradient-harsh {
+    background: linear-gradient(90deg, #000000 0%, #1e293b 100%);
+  }
+  
+  .bg-casino-dark {
+    background-color: #1e293b;
+  }
+  
+  .bg-casino-darker {
+    background-color: #0f172a;
   }
   
   .card-hover {

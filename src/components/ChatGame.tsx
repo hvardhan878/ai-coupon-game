@@ -94,10 +94,10 @@ export default function ChatGame() {
 
   if (!brand) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-purple-50">
+      <div className="min-h-screen flex items-center justify-center bg-casino-darker">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Brand not found</h2>
-          <Link to="/" className="text-purple-600 hover:text-purple-700">
+          <h2 className="text-2xl font-bold text-secondary-800 mb-4">Brand not found</h2>
+          <Link to="/" className="text-primary-600 hover:text-primary-700">
             ← Back to brands
           </Link>
         </div>
@@ -106,9 +106,9 @@ export default function ChatGame() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 to-purple-50">
+    <div className="min-h-screen flex flex-col bg-casino-darker">
       {/* Enhanced Header */}
-      <div className={`bg-gradient-to-r ${brand.bgColor} text-white relative overflow-hidden`}>
+      <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.1),transparent_50%)]"></div>
         
@@ -138,9 +138,9 @@ export default function ChatGame() {
               animate={{ scale: 1 }}
               className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2"
             >
-              <Trophy className="w-6 h-6 text-yellow-300" />
+              <Trophy className="w-6 h-6 text-gold-300" />
               <span className="font-bold">Victory!</span>
-              <Sparkles className="w-4 h-4 text-yellow-300" />
+              <Sparkles className="w-4 h-4 text-gold-300" />
             </motion.div>
           )}
         </div>
@@ -160,24 +160,24 @@ export default function ChatGame() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-white rounded-2xl p-6 max-w-md w-full mx-4 relative shadow-2xl"
+              className="bg-casino-dark border border-primary-800 rounded-2xl p-6 max-w-md w-full mx-4 relative shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setShowModal(false)}
-                className="absolute top-4 right-4 p-1 hover:bg-gray-100 rounded-full transition-colors"
+                className="absolute top-4 right-4 p-1 hover:bg-secondary-100 rounded-full transition-colors"
               >
-                <X className="w-5 h-5 text-gray-500" />
+                <X className="w-5 h-5 text-secondary-500" />
               </button>
               
               <div className="text-center mb-4">
                 <div className="text-4xl mb-2">{brand?.emoji}</div>
-                <h3 className="text-xl font-bold text-gray-800">Chat with {brand?.personaName}</h3>
+                <h3 className="text-xl font-bold text-white">Chat with {brand?.personaName}</h3>
               </div>
               
-              <div className="space-y-3 text-sm text-gray-600">
-                <p className="font-medium text-gray-800">🎰 You're chatting with Rico on Jackpot.bet!</p>
-                <p className="font-medium text-gray-800">💡 Your goal: Prove your degen spirit to earn a casino bonus!</p>
+              <div className="space-y-3 text-sm text-secondary-300">
+                <p className="font-medium text-white">🎰 You're chatting with Rico on Jackpot.bet!</p>
+                <p className="font-medium text-white">💡 Your goal: Prove your degen spirit to earn a casino bonus!</p>
                 <div className="space-y-2">
                   <p><strong>Tips:</strong></p>
                   <ul className="list-disc list-inside space-y-1 text-xs">
@@ -187,8 +187,8 @@ export default function ChatGame() {
                     <li>Never admit to cashing out early</li>
                   </ul>
                 </div>
-                <div className="bg-purple-50 p-3 rounded-lg">
-                  <p className="text-xs font-medium text-purple-800">💬 Try: "Yo Rico! Been grinding Degen Mining all night, just hit my biggest win!"</p>
+                <div className="bg-secondary-800 border border-primary-600 p-3 rounded-lg">
+                  <p className="text-xs font-medium text-gold-300">💬 Try: "Yo Rico! Been grinding Degen Mining all night, just hit my biggest win!"</p>
                 </div>
               </div>
             </motion.div>
@@ -209,9 +209,9 @@ export default function ChatGame() {
               >
                 <ChatBubble variant={message.isUser ? "sent" : "received"}>
                   <ChatBubbleAvatar
-                    emoji={message.isUser ? "👤" : brand.emoji}
+                    emoji={message.isUser ? "🃏" : brand.emoji}
                     fallback={message.isUser ? "You" : brand.personaName.charAt(0)}
-                    className={message.isUser ? "bg-gradient-to-br from-purple-500 to-pink-500" : undefined}
+                    className={message.isUser ? "bg-primary-700 ring-2 ring-primary-300 shadow-xl" : undefined}
                   />
                   <ChatBubbleMessage variant={message.isUser ? "sent" : "received"}>
                     {message.content}
@@ -245,7 +245,7 @@ export default function ChatGame() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-600 text-white relative overflow-hidden"
+          className="gradient-casino text-white relative overflow-hidden border-t border-primary-600"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)]"></div>
           
@@ -256,9 +256,9 @@ export default function ChatGame() {
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
               className="flex items-center justify-center space-x-3 mb-6"
             >
-              <Trophy className="w-12 h-12 text-yellow-300" />
+              <Trophy className="w-12 h-12 text-gold-300" />
               <h2 className="text-4xl font-black">Incredible! 🎉</h2>
-              <Sparkles className="w-10 h-10 text-yellow-300 animate-pulse" />
+              <Sparkles className="w-10 h-10 text-gold-300 animate-pulse" />
             </motion.div>
             
             <motion.p 
@@ -278,7 +278,7 @@ export default function ChatGame() {
             >
               <p className="text-sm opacity-90 mb-3 font-medium">Your exclusive bonus:</p>
               {chatState.bonusAmount && (
-                <p className="text-lg font-bold mb-4 text-yellow-300">
+                <p className="text-lg font-bold mb-4 text-gold-300">
                   {chatState.bonusAmount}
                 </p>
               )}
@@ -294,7 +294,7 @@ export default function ChatGame() {
                   whileTap={{ scale: 0.95 }}
                 >
                   {copiedCode ? (
-                    <CheckCircle className="w-6 h-6 text-green-300" />
+                    <CheckCircle className="w-6 h-6 text-success-300" />
                   ) : (
                     <Copy className="w-6 h-6" />
                   )}
@@ -307,7 +307,7 @@ export default function ChatGame() {
 
       {/* Enhanced Input Area */}
       {!chatState.gameWon && (
-        <div className="bg-white/80 backdrop-blur-sm border-t border-gray-200/50 p-6">
+        <div className="bg-casino-dark/95 backdrop-blur-sm border-t border-primary-600 p-6">
           <div className="max-w-4xl mx-auto">
             <div className="flex space-x-4 items-end">
               <div className="flex-1 relative">
@@ -319,9 +319,9 @@ export default function ChatGame() {
                   onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                   placeholder={`What would you like to say to ${brand.personaName}?`}
                   className={cn(
-                    "w-full px-6 py-4 bg-white border-2 border-gray-200 rounded-2xl",
-                    "focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none",
-                    "text-gray-800 placeholder-gray-400",
+                    "w-full px-6 py-4 bg-secondary-800 border-2 border-primary-600 rounded-2xl text-white",
+                    "focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none",
+                    "text-white placeholder-secondary-400",
                     "shadow-lg transition-all duration-200",
                     "disabled:opacity-50 disabled:cursor-not-allowed"
                   )}
@@ -333,7 +333,7 @@ export default function ChatGame() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="absolute right-3 top-1/2 -translate-y-1/2"
                   >
-                    <Sparkles className="w-5 h-5 text-purple-400" />
+                    <Sparkles className="w-5 h-5 text-primary-400" />
                   </motion.div>
                 )}
               </div>
@@ -341,10 +341,10 @@ export default function ChatGame() {
                 onClick={handleSendMessage}
                 disabled={!input.trim() || chatState.isLoading}
                 className={cn(
-                  "px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl",
-                  "hover:from-purple-700 hover:to-pink-700 disabled:opacity-50 disabled:cursor-not-allowed",
+                  "px-8 py-4 bg-danger-600 text-white rounded-2xl",
+                  "hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed",
                   "transition-all duration-200 flex items-center space-x-2 font-semibold shadow-lg",
-                  "disabled:hover:from-purple-600 disabled:hover:to-pink-600"
+                  "disabled:hover:bg-primary-600"
                 )}
                 whileHover={{ scale: input.trim() ? 1.05 : 1 }}
                 whileTap={{ scale: input.trim() ? 0.95 : 1 }}
